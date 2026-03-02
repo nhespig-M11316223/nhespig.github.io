@@ -8,6 +8,15 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style2.css">
 <style>
+        /* 1. 深紫色背景與愛心動畫容器 */
+        .hero {
+            background: linear-gradient(135deg, #4b0082 0%, #2e004f 100%) !important; /* 深紫色底 */
+            position: relative;
+            overflow: hidden; /* 確保愛心不會飄出區塊 */
+            color: #ffffff !important; /* 確保文字在深色底是白色的 */
+        }
+
+        /* 2. 關於標題行的顏色調整 */
         .titles-container {
             margin-bottom: 0.8rem;
         }
@@ -16,34 +25,51 @@
            position: relative;
            padding-left: 1.6rem;
            font-weight: bold;
-           /* --- 修改這裡：顏色改為深薰衣草紫 --- */
-           color: #6a5acd !important; 
+           color: #e6e6fa !important; /* 淺薰衣草色文字，在深底更清楚 */
            margin-bottom: 0.2rem !important;
-
            display: flex;
-           align-items: center;   /* 關鍵：文字垂直置中 */
+           align-items: center;
         }
 
         .title-line:before {
-             content: "●";          /* 實心圓 */
-             /* --- 修改這裡：圓點改為中紫色 --- */
-             color: #9370db;         
-             font-size: 0.75em;      
+             content: "●";
+             color: #dcd0ff; 
+             font-size: 0.75em;
              margin-right: 0.6rem;
-
-             /* --- 修改這裡：陰影改為淡淡的紫色光輝 --- */
-             text-shadow:
-                 0 1px 2px rgba(0,0,0,0.2),
-                 0 0 4px rgba(147, 112, 219, 0.4);
+             text-shadow: 0 0 8px rgba(220, 208, 255, 0.8);
          }
+
+        /* 3. 愛心泡泡動畫核心代碼 */
+        .hero::after {
+            content: "♥";
+            position: absolute;
+            color: rgba(255, 182, 193, 0.3); /* 半透明粉色愛心 */
+            font-size: 2rem;
+            animation: floatingHearts 10s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        /* 這裡定義多個愛心的飄動效果 */
+        @keyframes floatingHearts {
+            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.6; }
+            100% { transform: translateY(-100px) translateX(100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* 讓愛心更豐富（偽元素模擬多個泡泡） */
+        .hero-content::before {
+            content: "♥   ♥       ♥";
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 3rem;
+            animation: floatingHearts 15s infinite linear;
+            white-space: pre;
+        }
         
         .title-line:last-child {
             margin-bottom: 0 !important;
-        }
-
-        /* 額外小建議：如果希望整體背景也帶點淡紫色，可以加這一行 */
-        .hero {
-            background: linear-gradient(135deg, #f8f8ff 0%, #e6e6fa 100%) !important;
         }
     </style>
     <link rel="icon" type="image/x-icon" href="/pic/favicon.ico">
